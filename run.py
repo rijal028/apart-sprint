@@ -6,7 +6,7 @@ from src.visualize_results import export_all_figures
 
 
 MODEL_NAME = "distilbert-base-uncased"
-DOMAINS_DIR = "domains/senior_high"
+DOMAINS_DIR = "domains/level 1"
 OUTPUT_DIR = "outputs"
 
 
@@ -45,3 +45,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
