@@ -33,20 +33,20 @@ def mean_pooling(hidden_states, attention_mask):
 def load_domain_py_file(filepath):
     """
     File contoh isi:
-    DOMAIN_NAME = "biology"
+    DOMAIN_name = "biology"
     TEXTS = ["...", "...", ...]
     """
     spec = importlib.util.spec_from_file_location("domain_module", filepath)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
 
-    domain_name = getattr(module, "DOMAIN_NAME", None)
+    domain_name = getattr(module, "DOMAIN_name", None)
     texts = getattr(module, "TEXTS", None)
 
     if domain_name is None or texts is None:
         raise ValueError(
             f"Invalid domain file: {filepath}\n"
-            "Must contain DOMAIN_NAME and TEXTS variables."
+            "Must contain DOMAIN_name and TEXTS variables."
         )
 
     return domain_name, texts
@@ -55,7 +55,7 @@ def load_domain_py_file(filepath):
 def load_domains_from_folder(domains_dir):
     """
     domains_dir: domains/senior_high/
-    expects many .py files each containing DOMAIN_NAME and TEXTS
+    expects many .py files each containing DOMAIN_name and TEXTS
     """
     domains = {}
     for fname in sorted(os.listdir(domains_dir)):
@@ -350,4 +350,5 @@ def print_confusion(confusion):
             continue
 
         top_losses_str = ", ".join([f"{x[0]}:{x[1]}" for x in info["top_losses"]])
+
         print(f"{d:15s} | total_losses={losses:2d}/{total} | top_losses -> {top_losses_str}")
